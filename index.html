@@ -40,6 +40,9 @@ nav {
 .hero { padding: 120px 48px 100px; max-width: 980px; margin: 0 auto; text-align: center; }
 .hero-eyebrow { font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); margin-bottom: 20px; }
 .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(58px, 8vw, 92px); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; }
+.hero-title-line { display: inline-block; min-height: 1.1em; }
+.hero-title-typed::after { content: ""; display: inline-block; width: 1px; height: 0.9em; margin-left: 0.08em; background: currentColor; vertical-align: -0.08em; animation: blinkCaret 0.8s steps(1) infinite; }
+.hero-title-typed.is-complete::after { animation: none; opacity: 0; }
 .hero h1 em { font-style: italic; color: #5b5e66; }
 .hero-sub { font-size: 24px; font-weight: 400; color: var(--mid); line-height: 1.65; max-width: 720px; margin: 0 auto; }
 
@@ -114,6 +117,7 @@ footer { padding: 60px 48px; max-width: 720px; margin: 0 auto; display: flex; fl
 .footer-handle { font-size: 15px; font-weight: 500; color: var(--black); text-align: center; }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blinkCaret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 .hero > * { animation: fadeUp 0.6s ease forwards; opacity: 0; }
 .hero-eyebrow { animation-delay: 0.1s; }
 .hero h1 { animation-delay: 0.2s; }
@@ -192,7 +196,7 @@ footer { padding: 60px 48px; max-width: 720px; margin: 0 auto; display: flex; fl
 
 <div class="hero">
   <div class="hero-eyebrow">Free resource by <a class="social-link" href="https://www.instagram.com/tx.frames/" target="_blank" rel="noopener noreferrer">@tx.frames</a></div>
-  <h1>Build your portfolio<br><em>in a weekend.</em></h1>
+  <h1><span class="hero-title-line hero-title-typed" data-text="Build your portfolio" aria-label="Build your portfolio">Build your portfolio</span><br><em>in a weekend.</em></h1>
   <p class="hero-sub">Zero to portfolio-ready in 48 hours. Every tool is free.</p>
 </div>
 
@@ -239,8 +243,16 @@ footer { padding: 60px 48px; max-width: 720px; margin: 0 auto; display: flex; fl
       <div class="step"><span class="step-n">01</span><span class="step-text">Go to framer.com and click <strong>Templates</strong> in the top navigation</span></div>
       <div class="step"><span class="step-n">02</span><span class="step-text">Filter by <strong>Portfolio</strong> then filter by <strong>Free</strong></span></div>
       <div class="step"><span class="step-n">03</span><span class="step-text">Pick one that is clean, minimal and has a projects section</span></div>
-      <div class="step"><span class="step-n">04</span><span class="step-text">Before editing — duplicate it first. Top right → three dots → <strong>Duplicate</strong></span></div>
-      <div class="step"><span class="step-n">05</span><span class="step-text">Swap all placeholder text with your own content</span></div>
+      <div class="step"><span class="step-n">05</span><span class="step-text"><span style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;"></span><strong>See your site live as you build</strong></span><br>
+        <span style="display:grid;gap:0;margin-top:4px;">
+        <span style="display:grid;grid-template-columns:24px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--bg2);"><span style="font-size:12px;color:var(--light);">(1) </span><span>Click <strong>Publish</strong> in the top right corner of Framer</span></span>
+        <span style="display:grid;grid-template-columns:24px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--bg2);"><span style="font-size:12px;color:var(--light);">(2) </span><span>Framer gives you a free link instantly, something like <strong>yourname.framer.website</strong></span></span>
+        <span style="display:grid;grid-template-columns:24px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--bg2);"><span style="font-size:12px;color:var(--light);">(3) </span><span>Open that link on your phone too. Check how it looks on mobile as you go</span></span>
+        <span style="display:grid;grid-template-columns:24px 1fr;gap:12px;padding:8px 0;"><span style="font-size:12px;color:var(--light);">(4) </span><span>Every time you publish an update, the link refreshes</span></span>
+        </span>
+        </span>
+      </div>      
+    <div class="step"><span class="step-n">05</span><span class="step-text">Swap all placeholder text with your own content</span></div>
     </div>
     <div class="callout">
       <p><strong>Your landing page needs only 3 things</strong>Who you are.<br> What you do.<br> How to contact you.<br><br>That's it. Do not overthink it.</p>
@@ -329,12 +341,12 @@ footer { padding: 60px 48px; max-width: 720px; margin: 0 auto; display: flex; fl
   <div class="tools-inner">
     <div class="section-eyebrow">Everything you need</div>
     <div class="tools-grid">
-      <div class="tool-item"><div class="tool-name">Framer</div><div class="tool-use">Portfolio website</div><a class="tool-link" href="https://framer.com" target="_blank">framer.com</a><div class="free-tag"> Free</div></div>
-      <div class="tool-item"><div class="tool-name">UXfolio</div><div class="tool-use">Case study AI</div><a class="tool-link" href="https://uxfol.io" target="_blank">uxfol.io</a><div class="free-tag"> Free</div></div>
-      <div class="tool-item"><div class="tool-name">Figma</div><div class="tool-use">Design + mockups</div><a class="tool-link" href="https://figma.com" target="_blank">figma.com</a><div class="free-tag"> Free</div></div>
-      <div class="tool-item"><div class="tool-name">Figma Community</div><div class="tool-use">Free mockups</div><a class="tool-link" href="https://figma.com/community" target="_blank">figma.com/community</a><div class="free-tag"> Free</div></div>
-      <div class="tool-item"><div class="tool-name">Coolors</div><div class="tool-use">Color palettes</div><a class="tool-link" href="https://coolors.co" target="_blank">coolors.co</a><div class="free-tag">Free</div></div>
-      <div class="tool-item"><div class="tool-name">Google Fonts</div><div class="tool-use">Typography</div><a class="tool-link" href="https://fonts.google.com" target="_blank">fonts.google.com</a><div class="free-tag"> Free</div></div>
+      <div class="tool-item"><div class="tool-name">Framer</div><div class="tool-use">Portfolio website</div><a class="tool-link" href="https://framer.com" target="_blank">framer.com </a><div class="free-tag"> Free</div></div>
+      <div class="tool-item"><div class="tool-name">UXfolio</div><div class="tool-use">Case study AI</div><a class="tool-link" href="https://uxfol.io" target="_blank">uxfol. </a><div class="free-tag"> Free</div></div>
+      <div class="tool-item"><div class="tool-name">Figma</div><div class="tool-use">Design + mockups</div><a class="tool-link" href="https://figma.com" target="_blank">figma.com </a><div class="free-tag"> Free</div></div>
+      <div class="tool-item"><div class="tool-name">Figma Community</div><div class="tool-use">Free mockups</div><a class="tool-link" href="https://figma.com/community" target="_blank">figma.com/community </a><div class="free-tag"> Free</div></div>
+      <div class="tool-item"><div class="tool-name">Coolors</div><div class="tool-use">Color palettes</div><a class="tool-link" href="https://coolors.co" target="_blank">coolors.co </a><div class="free-tag">Free</div></div>
+      <div class="tool-item"><div class="tool-name">Google Fonts</div><div class="tool-use">Typography</div><a class="tool-link" href="https://fonts.google.com" target="_blank">fonts.google.com </a><div class="free-tag"> Free</div></div>
     </div>
   </div>
 </div>
@@ -347,6 +359,27 @@ footer { padding: 60px 48px; max-width: 720px; margin: 0 auto; display: flex; fl
   <div class="footer-left">A free resource by <a class="social-link" href="https://www.instagram.com/tx.frames/" target="_blank" rel="noopener noreferrer">@tx.frames</a><br>Follow for more honest designer talk.</div>
   <div class="footer-handle"><a class="social-link" href="https://www.instagram.com/tx.frames/" target="_blank" rel="noopener noreferrer">@tx.frames</a></div>
 </footer>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var title = document.querySelector('.hero-title-typed');
+    if (!title) return;
+
+    var text = title.getAttribute('data-text') || '';
+    title.textContent = '';
+
+    var index = 0;
+    var typing = window.setInterval(function () {
+      title.textContent = text.slice(0, index + 1);
+      index += 1;
+
+      if (index >= text.length) {
+        window.clearInterval(typing);
+        title.classList.add('is-complete');
+      }
+    }, 65);
+  });
+</script>
 
 </body>
 </html>
