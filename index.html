@@ -354,22 +354,54 @@ footer { padding: 60px 48px; max-width: 720px; margin: 0 auto; display: flex; fl
 <div style="max-width:720px;margin:0 auto;padding:80px 48px;border-top:1px solid var(--border);">
   <div style="font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);margin-bottom:16px;">Did this help?</div>
   <p style="font-family:'Playfair Display',serif;font-size:28px;font-weight:400;line-height:1.3;margin-bottom:32px;letter-spacing:-0.01em;">Tell me which part was<br><em style="color:#5b5e66;">most useful.</em></p>
-  
-  <form action="https://api.web3forms.com/submit" method="POST">
+
+  <form id="feedback-form" action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" value="7a6492eb-e038-4263-85ef-7e0b0c4161e7">
     <input type="hidden" name="subject" value="New feedback — Portfolio Roadmap">
-    
+
     <div style="margin-bottom:16px;">
-      <input type="text" name="name" placeholder="Your name (optional)" style="width:100%;padding:14px 18px;border:1px solid var(--border);border-radius:10px;font-family:'Jost',sans-serif;font-size:15px;color:var(--black);background:var(--bg);outline:none;">
+      <input type="text" name="name" id="feedback-name" placeholder="Your name (optional)" style="width:100%;padding:14px 18px;border:1px solid var(--border);border-radius:10px;font-family:'Jost',sans-serif;font-size:15px;color:var(--black);background:var(--bg);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'">
     </div>
 
     <div style="margin-bottom:20px;">
-      <textarea name="message" placeholder="Share your thoughts here." required style="width:100%;padding:14px 18px;border:1px solid var(--border);border-radius:10px;font-family:'Jost',sans-serif;font-size:15px;color:var(--black);background:var(--bg);outline:none;resize:vertical;min-height:120px;"></textarea>
+      <textarea name="message" id="feedback-message" placeholder="Did this help? Tell me which part was most useful." required style="width:100%;padding:14px 18px;border:1px solid var(--border);border-radius:10px;font-family:'Jost',sans-serif;font-size:15px;color:var(--black);background:var(--bg);outline:none;resize:vertical;min-height:120px;transition:border-color 0.2s;line-height:1.7;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'"></textarea>
     </div>
 
-    <button type="submit" style="padding:14px 32px;background:var(--black);color:#fff;border:none;border-radius:10px;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;cursor:pointer;">Send feedback</button>
+    <button type="submit" id="submit-btn" style="padding:14px 32px;background:var(--black);color:#fff;border:none;border-radius:10px;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Send feedback</button>
   </form>
+
+  <div id="success-msg" style="display:none;margin-top:20px;padding:24px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);">
+    <p style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--black);margin-bottom:8px;">Thank you. 🤍</p>
+    <p style="font-size:15px;font-weight:300;color:var(--mid);line-height:1.7;">Your feedback means a lot. I read every single one.</p>
+  </div>
 </div>
+
+<script>
+  document.getElementById('feedback-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('submit-btn');
+
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.6';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+
+    try {
+      await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+      document.getElementById('feedback-name').value = '';
+      document.getElementById('feedback-message').value = '';
+      form.style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    } catch (err) {
+      btn.textContent = 'Send feedback';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
 
 <footer>
   <div class="footer-profile">
