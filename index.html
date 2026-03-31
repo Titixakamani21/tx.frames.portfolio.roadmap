@@ -100,7 +100,7 @@ nav {
 .tool-item { background: var(--bg); padding: 28px 24px; }
 .tool-name { font-size: 17px; font-weight: 500; margin-bottom: 4px; }
 .tool-use { font-size: 15px; font-weight: 300; color: var(--mid); margin-bottom: 12px; }
-.tool-link { font-size: 14px; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
+.tool-link { font-size: 14px; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; overflow-wrap: anywhere; }
 .tool-link:hover { color: var(--black); border-color: var(--black); }
 .free-tag { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--light); }
 
@@ -124,7 +124,9 @@ footer { padding: 60px 48px; max-width: 720px; margin: 0 auto; display: flex; fl
   .hero-sub { font-size: 20px; }
   .overview, .tools-section { padding: 60px 24px; }
   .content { padding: 60px 24px; }
-  .timeline, .tools-grid { grid-template-columns: 1fr 1fr; }
+  .timeline { grid-template-columns: 1fr 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .tool-item { padding: 24px 20px; }
   .cs-grid, .rules { grid-template-columns: 1fr; }
   .footer-image { width: 112px; height: 144px; }
   .footer-role { font-size: 15px; }
